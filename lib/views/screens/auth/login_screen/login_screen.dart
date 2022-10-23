@@ -24,6 +24,7 @@ class LoginScreen extends StatelessWidget {
                 fontWeight: FontWeight.w900,
               ),
             ),
+            const SizedBox(height: 25),
             const Text(
               'Login',
               style: TextStyle(
@@ -41,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                 labelText: 'Email',
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 15),
             Container(
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -63,9 +64,10 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               child: InkWell(
-                onTap: () {
-                  print('Login User');
-                },
+                onTap: () => authController.loginUser(
+                  _emailController.text,
+                  _passwordController.text,
+                ),
                 child: const Center(
                   child: Text(
                     'Login',
