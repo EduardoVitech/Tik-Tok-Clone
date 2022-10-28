@@ -21,8 +21,8 @@ class ConfirmScreen extends StatefulWidget {
 
 class _ConfirmScreenState extends State<ConfirmScreen> {
   late VideoPlayerController controller;
-  TextEditingController _songController = TextEditingController();
-  TextEditingController _captionController = TextEditingController();
+  final TextEditingController _songController = TextEditingController();
+  final TextEditingController _captionController = TextEditingController();
 
   UploadVideoController uploadVideoController =
       Get.put(UploadVideoController());
@@ -35,7 +35,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
     });
     controller.initialize();
     controller.play();
-    controller.setVolume(1);
+    controller.setVolume(1.0);
     controller.setLooping(true);
   }
 

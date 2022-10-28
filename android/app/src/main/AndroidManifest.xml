@@ -28,6 +28,7 @@
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
+            android:usesCleartextTraffic="true"
             android:name="flutterEmbedding"
             android:value="2" />
     </application>

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/constants.dart';
+import 'package:tiktok_clone/views/screens/auth/signup_screen/signup_screen.dart';
 import 'package:tiktok_clone/views/widgets/custom_icon/custom_icon.dart';
 
 class HomeScreen extends StatefulWidget {
