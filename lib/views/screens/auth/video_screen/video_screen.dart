@@ -138,7 +138,8 @@ class VideoScreen extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              buildProfile('String url'),
+                              buildProfile(
+                                  'https://images.unsplash.com/photo-1489875347897-49f64b51c1f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
                               Column(
                                 children: [
                                   InkWell(
@@ -203,7 +204,8 @@ class VideoScreen extends StatelessWidget {
                                 ],
                               ),
                               CircleAnimation(
-                                child: buildMusicAlbum('profile photo'),
+                                child: buildMusicAlbum(
+                                    'https://images.unsplash.com/photo-1489875347897-49f64b51c1f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
                               ),
                             ],
                           ),
