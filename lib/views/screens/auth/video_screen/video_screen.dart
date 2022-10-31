@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tiktok_clone/controllers/video_controller/video_controller.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item/video_player_item.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoScreen extends StatelessWidget {
-  const VideoScreen({super.key});
+  VideoScreen({super.key});
+
+  final VideoController videoController = Get.put(VideoController());
 
   buildProfile(String profilePhoto) {
     return SizedBox(
@@ -72,153 +76,155 @@ class VideoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: PageView.builder(
-        //itemCount: ,
-        controller: PageController(initialPage: 0, viewportFraction: 1),
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return Stack(
-            children: [
-              //VideoPlayerItem(videoUrl: ,),
-              Column(
-                children: [
-                  const SizedBox(height: 100),
-                  Expanded(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'username',
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
+      body: Obx(() {
+        return PageView.builder(
+          itemCount: videoController.videoList.length,
+          controller: PageController(initialPage: 0, viewportFraction: 1),
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            final data = videoController.videoList[index];
+            return Stack(
+              children: [
+                VideoPlayerItem(videoUrl: data.videoUrl),
+                Column(
+                  children: [
+                    const SizedBox(height: 100),
+                    Expanded(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    data.username,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'caption',
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.music_note,
-                                      size: 15,
+                                  Text(
+                                    data.caption,
+                                    style: const TextStyle(
+                                      fontSize: 15,
                                       color: Colors.white,
                                     ),
-                                    Text(
-                                      'song name',
-                                      style: const TextStyle(
-                                        fontSize: 15,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.music_note,
+                                        size: 15,
                                         color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      Text(
+                                        data.songname,
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            margin: EdgeInsets.only(top: size.height / 5),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                buildProfile(data.profilePhoto),
+                                Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Icon(
+                                        Icons.favorite,
+                                        size: 40,
+                                        color: Colors.red,
                                       ),
                                     ),
+                                    const SizedBox(height: 7),
+                                    Text(
+                                      data.likes.length.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 7),
                                   ],
+                                ),
+                                Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {},
+                                      child: const Icon(
+                                        Icons.comment,
+                                        size: 40,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 7),
+                                    Text(
+                                      data.commentCount.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 7),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {},
+                                      child: const Icon(
+                                        Icons.reply,
+                                        size: 40,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 7),
+                                    Text(
+                                      data.shareCount.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 7),
+                                  ],
+                                ),
+                                CircleAnimation(
+                                  child: buildMusicAlbum(data.profilePhoto),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 100,
-                          margin: EdgeInsets.only(top: size.height / 5),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              buildProfile(
-                                  'https://images.unsplash.com/photo-1489875347897-49f64b51c1f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
-                              Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {},
-                                    child: Icon(
-                                      Icons.favorite,
-                                      size: 40,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 7),
-                                  Text(
-                                    '2,200',
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 7),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {},
-                                    child: Icon(
-                                      Icons.comment,
-                                      size: 40,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 7),
-                                  Text(
-                                    '300',
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 7),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {},
-                                    child: Icon(
-                                      Icons.reply,
-                                      size: 40,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 7),
-                                  Text(
-                                    '2',
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 7),
-                                ],
-                              ),
-                              CircleAnimation(
-                                child: buildMusicAlbum(
-                                    'https://images.unsplash.com/photo-1489875347897-49f64b51c1f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          );
-        },
-      ),
+                  ],
+                ),
+              ],
+            );
+          },
+        );
+      }),
     );
   }
 }
