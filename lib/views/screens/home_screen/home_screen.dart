@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/constants.dart';
-import 'package:tiktok_clone/views/screens/auth/signup_screen/signup_screen.dart';
 import 'package:tiktok_clone/views/widgets/custom_icon/custom_icon.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -42,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message, size: 30),
-            label: 'Message',
+            label: 'Messages',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person, size: 30),
@@ -50,9 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Center(
-        child: pages[pageIdx],
-      ),
+      body: pages[pageIdx],
     );
   }
 }

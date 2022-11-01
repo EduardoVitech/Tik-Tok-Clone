@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class CircleAnimation extends StatefulWidget {
   final Widget child;
   const CircleAnimation({
-    super.key,
+    Key? key,
     required this.child,
-  });
+  }) : super(key: key);
 
   @override
-  State<CircleAnimation> createState() => _CircleAnimationState();
+  _CircleAnimationState createState() => _CircleAnimationState();
 }
 
 class _CircleAnimationState extends State<CircleAnimation>
@@ -20,7 +20,9 @@ class _CircleAnimationState extends State<CircleAnimation>
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 5000),
+      duration: const Duration(
+        milliseconds: 5000,
+      ),
     );
     controller.forward();
     controller.repeat();
@@ -28,8 +30,8 @@ class _CircleAnimationState extends State<CircleAnimation>
 
   @override
   void dispose() {
-    super.dispose();
     controller.dispose();
+    super.dispose();
   }
 
   @override
