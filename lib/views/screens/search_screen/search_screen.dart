@@ -29,21 +29,15 @@ class SearchScreen extends StatelessWidget {
           ),
         ),
         body: searchController.searchedUsers.isEmpty
-            ? Center(
-                child: IconButton(
-                  onPressed: () {
-                    AuthController().signOut();
-                  },
-                  icon: Icon(Icons.close),
-                ),
-                /* Text(
+            ? const Center(
+                child: Text(
                   'Search for users!',
                   style: TextStyle(
                     fontSize: 25,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
-                ), */
+                ),
               )
             : ListView.builder(
                 itemCount: searchController.searchedUsers.length,
