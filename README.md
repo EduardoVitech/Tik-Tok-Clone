@@ -1,6 +1,6 @@
 # tiktok_clone
 
-App de troca de mensagens desenvolvido em Flutter.
+Rede social para envio de vídeos desenvolvido em Flutter.
 
 # Telas
 
