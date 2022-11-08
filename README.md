@@ -11,7 +11,7 @@ App de troca de mensagens desenvolvido em Flutter.
   - ![Tela de Registro](./assets/Register.png)
 
 - ## Home
-  - ![Home](./assets/HomePage.png)
+  - ![Home](./assets/HomePage.PNG)
   
 - ## Add Video
   - ![Add Video](./assets/AddVideo.png)
@@ -21,4 +21,4 @@ App de troca de mensagens desenvolvido em Flutter.
   - ![Search](./assets/Search.png)
 
 - ## Messages
-  - ![Messages](./assets/Messagepage.png)
+  - ![Messages](./assets/Messagepage.PNG)
