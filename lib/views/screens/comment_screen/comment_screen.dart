@@ -32,6 +32,7 @@ class CommentScreen extends StatelessWidget {
                       itemCount: commentController.comments.length,
                       itemBuilder: (context, index) {
                         final comment = commentController.comments[index];
+
                         return ListTile(
                           leading: CircleAvatar(
                             backgroundColor: Colors.black,
