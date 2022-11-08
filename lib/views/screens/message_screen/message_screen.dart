@@ -63,7 +63,7 @@ class MessageScreen extends StatelessWidget {
                           Text('Hello, i like your videos'),
                         ],
                       ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 2.1),
+                      const Spacer(),
                       Icon(
                         Icons.more_vert,
                         color: Colors.white,
@@ -101,7 +101,7 @@ class MessageScreen extends StatelessWidget {
                           Text('Congratulations for the videos'),
                         ],
                       ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 2.6),
+                      const Spacer(),
                       Icon(
                         Icons.more_vert,
                         color: Colors.white,
